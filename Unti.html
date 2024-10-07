@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Prayag 24</title>
+  <link rel="icon" type="image/x-icon" href="Logo png without text.png" sizes="32x32 ">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    
+    <style>
+
+ #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+		transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    opacity: 1;
+    visibility: visible;
+        }
+
+        #loader {
+            border: 10px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 10px solid #9146FF;
+            width: 100px;
+            height: 100px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        body.loading {
+            overflow: hidden;
+        }
+
+        body.loaded #loader-wrapper {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+
+
+
+
+
+
+
+canvas{
+    position: relative;
+    z-index: 9;
+    max-width: 100vw;
+    max-height: 100vh;
+    background-color: #000;
+    opacity: 1; /* Start fully visible */
+    transition: opacity 1.5s ease-in-out;
+}
+#loop{
+    display: flex;
+    position: absolute;
+    top: 30%;
+    height: 25%;
+    width: 100%;
+    font-size: 100px;
+    white-space: nowrap;
+    font-family: gilroy;
+}
+@import url("https://fonts.googleapis.com/css?family=Raleway:900&display=swap");
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.logos {
+  overflow: hidden;
+  padding: 20px 0;
+  background: rgb(0, 0, 0);
+  white-space: nowrap;
+  position: absolute;
+  height: 150px;
+  width: 60%;
+  margin: 0 auto;
+  bottom: 0;
+  transform: translateX(25%);
+}
+
+.logos:before,
+.logos:after {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  content: "";
+  z-index: 2;
+}
+
+.logos:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(0, 0, 0)100%);
+}
+
+.logos:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(0, 0, 0)100%);
+}
+
+.logos:hover .logos-slide {
+  animation-play-state: paused;
+}
+
+.logos-slide {
+  display: inline-block;
+  animation: 20s slide infinite linear;
+}
+
+.logos-slide img {
+  height: 10px;
+  margin: 0 20px;
+}
+#logo{
+  border: 2px,solid,rgba(255, 255, 255, 0.5);
+  width: 150px;
+  height: 100px;
+  border-radius: 20px;
+}
+
+  * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0px;
+
+        }
+
+        #container {
+            position: absolute;
+            margin: auto;
+            width: 100vw;
+            height: 80pt;
+            top:0;
+            bottom:0;
+	color:white;
+            filter: url(#threshold) blur(0.6px);
+        }
+
+        #text1,
+        #text2 {
+            position: absolute;
+            width: 100%;
+            display: inline-block;
+		color: transparent;
+            background-image: linear-gradient(90deg, #BB86FC, #9146FF);
+
+            background-clip: text;
+            -webkit-background-clip: text;
+            letter-spacing: 2px;
+            font-family: "Raleway", sans-serif;
+            font-size: 150pt;
+
+            text-align: center;
+		bottom:10%;
+            user-select: none;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background:black;
+            scroll-behavior: smooth;
+        }
+
+        .containermain {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background: linear-gradient(to bottom, black 60%,black);
+            z-index: 1;
+            
+        }
+
+      .container3{
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background: linear-gradient(black,black);
+            z-index: 1;
+        }
+
+        /* Video Background */
+        .video-background {
+            position: absolute;
+            top: 30%;
+            left: 25%; /* Initial position */
+           width: 100%;
+            height: 47%;
+            overflow: hidden;
+            z-index: -1; /* Ensures the video is behind the content */
+            transition: left 1s ease-in-out; /* Smooth transition for video movement */
+        }
+
+.content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            
+            padding-top: 10%;
+        }
+
+        /* H1 Hidden Initially */
+                video {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+	
+            width: 24%;
+            height: 100%;
+       
+            transform: translate(-50%, -50%);
+            object-fit: cover; /* Ensures video covers the entire area */
+            z-index: -1;
+            pointer-events: none; /* Prevents video interaction (e.g., click or right-click) */
+        }
+ 
+          .video-wrapper {
+            width: 25%; /* Video size reduced by 50% */
+            height: auto;
+            position: absolute;
+            bottom: -100%; /* Initially hidden below the screen */
+            left: 50%; /* Initially center horizontally */
+            transform: translateX(-50%); /* Horizontally centered */
+            opacity: 0; /* Initially invisible */
+            transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out, left 0.3s ease-in-out, transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Add smooth transitions */
+            filter: blur(0); /* Initially no blur */
+        }
+
+        /* Scroll counter style */
+        .scroll-counter {
+            position: absolute;
+            top: 20px; /* Distance from the top */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center the counter */
+            color: white;
+            font-size: 24px; /* Font size */
+            z-index: 2; /* Make sure it's on top */
+        }
+
+        /* Blank page for the second section */
+        .next-page {
+            background-color: black; /* Set next page background to black */
+            height: 100vh; /* Full height of the viewport */
+            display: none; /* Hidden initially */  
+            
+        }
+
+        nav ul li a:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            line-height: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Slight hover effect */
+        }
+
+        nav {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        nav ul {
+            text-align:center;
+            padding: 0;
+        }
+
+        nav ul li {
+            list-style-type: none;
+            display: inline-block;
+            margin-right: 20px;
+            opacity: 0; /* Initially hidden */
+            animation: reveal 1s ease forwards;
+        }
+
+        /* Delays for each list item */
+        nav ul li:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+
+        nav ul li:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        nav ul li:nth-child(3) {
+            animation-delay: 1.5s;
+        }
+
+        nav ul li:nth-child(4) {
+            animation-delay: 2s;
+        }
+
+        nav ul li:nth-child(5) {
+            animation-delay: 2.5s;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-family: "Oswald", sans-serif;
+            font-weight: 400;
+            font-size: 17px;
+            padding: 10px 15px;
+            display: inline-block;
+            white-space: nowrap;
+            transition: color 0.3s ease;
+            font-weight: bold;
+        }
+
+        /* Keyframes for reveal animation */
+        @keyframes reveal {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            margin-right: 10px;
+        }
+.containertext {
+            height: 40vh;
+            width: 100%;
+            background: black; /* Dark background */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px; /* Add padding */
+        }
+.containertex {
+            height: 5vh;
+            width: 100%;
+            background: black; /* Dark background */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px; /* Add padding */
+        }
+
+.texted {
+            font-size: 48px; /* Adjust font size for readability */
+            line-height: 1.1; /* Tighter line spacing */
+            text-align: center; /* Center align text */
+            background: linear-gradient(to right, #d064db, #3a1377); /* Gradient text */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; /* Initially transparent text */
+            opacity: 0; /* Hidden initially */
+            transform: translateY(50px); /* Slightly lower text for initial position */
+            transition: all 2s ease-in-out; /* Smooth all transitions */
+            font-family: 'Arial', sans-serif;
+            white-space: nowrap;
+letter-spacing: 3px; /* Prevent automatic line breaks */
+        }
+
+        .texted span {
+            display: block;
+		margin-bottom: 15px;
+        }
+
+        .texted.revealed {
+            opacity: 1; /* Make visible */
+            transform: translateY(0); /* Bring it to original position */
+        }
+
+        .texted.hidden {
+            opacity: 0; /* Fade out */
+            transform: translateY(50px); /* Move back down when fading out */
+        }
+
+        @media (max-width: 600px) {
+            .texted {
+                font-size: 36px; /* Smaller font size for mobile */
+            }
+        }
+
+
+
+
+@font-face {
+  font-family: danger;
+  src: url(danger.ttf);
+}
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: transparent;
+            border-radius: 30px;
+            width: 53%;
+            border: 1px solid #808080;
+            position: absolute;
+            top: 10%;
+            left: 23%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+   #scrollVideo {
+            position: absolute; /* Absolute positioning for smooth transition */
+            bottom: -100%; /* Start off-screen */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transitions */
+            opacity: 0; /* Initially hidden */
+        }
+
+        .contact-button {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #fff;
+            background: linear-gradient(to left, #5e3b8b 20%, black);
+            border: 2px solid #7e4cc9;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background-color: #7e4cc9;
+        }
+
+        /* Image animation */
+    .ut{
+
+font-size: 150pt;
+background-image: linear-gradient(90deg, #BB86FC, #9146FF);
+
+            background-clip: text;
+            -webkit-background-clip: text;
+            letter-spacing: 2px;
+            font-family: "Raleway", sans-serif;
+
+
+
+}
+
+.containerma{
+
+background:black;
+width:100%;
+height:100vh;
+position:relative;
+
+
+}
+        .logo span {
+            color: #fff;
+            font-size: 20px;
+            font-style: italic;
+	opacity:.5;
+            font-family: 'Arial', sans-serif;
+            border-right: 2px solid rgba(255, 255, 255, 0.75); /* Blinking cursor effect */
+            white-space: nowrap; /* Prevent text from wrapping */
+            overflow: hidden; /* Hide overflow to create typing effect */
+            display: inline-block;
+            animation: typin 4s steps(30, end) forwards, blink 0.75s step-end 4s;
+        }
+
+        @keyframes typin {
+            from { width: 0; }
+            to { width: 100%; } /* Set width to auto-grow dynamically */
+        }
+
+        @keyframes blink {
+            50% { border-color: rgba(255, 255, 255, 0.75); }
+            100% { border-color: transparent; }
+        }
+        .immersive-text {
+            position: absolute;
+            top: 28%;
+            left: 45%;
+            transform: translateX(-50%); /* This centers the element horizontally */
+        }
+
+        #typewriter-text {
+            font-family:"Oswald", sans-serif;
+            font-size: 70px; /* Adjust size as necessary */
+            font-weight: bold;
+            color: transparent;
+            background-image: linear-gradient(90deg, #BB86FC, #9146FF);
+            background-clip: text;
+            -webkit-background-clip: text;
+            letter-spacing: 2px; /* Space between the letters */
+            opacity: 0; /* Initially hidden */
+            animation: fadeIn 3s forwards; /* Fade in */
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+h2{
+text-align:center;
+opacity:.5;
+ top: 57%;
+     left: 46%;
+font-size:30px;
+position:absolute;
+color: transparent;
+         background-image: linear-gradient(white,white);
+        background-clip: text;
+       -webkit-background-clip: text;
+font-weight: bold;
+font-family:"Oswald", sans-serif;
+}
+
+
+
+
+
+.b {
+    opacity:.9;
+    border: none;
+    font-family: "Oswald", sans-serif;
+    z-index: 2;
+    color: #BB86FC;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 68%;
+     left: 46%;
+    cursor: pointer;
+       background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+}
+
+    </style>
+</head>
+<body >
+ 
+ <div class="containermain">
+<br><br><br><br>
+        <div class="navbar">
+
+            <!-- Logo section -->
+            <div class="logo">
+                <img src="Logo png without text.png" alt="Logo">
+                <span>Prayag24.live</span>
+            </div>
+            <!-- Navigation buttons -->
+            <div class="nav-buttons">
+                <button class="contact-button">SEARCH</button>
+            </div>
+        </div>
+        <div id="container">
+        <span id="text1"></span>
+        <span id="text2"></span>
+    </div>
+
+    <svg id="filters">
+        <defs>
+            <filter id="threshold">
+                <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      0 0 0 255 -140" />
+            </filter>
+        </defs>
+    </svg>
+<h2>17-18 OCT</h2>
+<input type="button" class="b" value="REGISTER">
+<div class="logos">
+      <div class="logos-slide">
+        <img id="logo" src="3m.svg" >
+</div>
+<div class="logos-slide">
+        <img id="logo" src="barstool-store.svg" >
+</div>
+<div class="logos-slide">
+        <img id="logo" src="budweiser.svg" >
+</div>
+<div class="logos-slide">
+        <img id="logo" src="buzzfeed.svg" >
+</div>
+<div class="logos-slide">
+        <img id="logo" src="forbes.svg" >
+</div>
+<div class="logos-slide">
+        <img id="logo" src="macys.svg" >
+</div>
+<div class="logos-slide">
+        <img id="logo" src="menshealth.svg" >
+</div>
+<div class="logos-slide">
+        <img id="logo" src="mrbeast.svg" >
+</div>
+<div class="logos-slide">
+        <img id="logo" src="Riot Games.svg" >
+      </div>
+
+</div>
+</div>
+    <div class="containertext" id="containertext">
+        <p class="texted" id="texted">
+<br><br>
+            <span>Inside360 is a fast-growing Immersive AI</span> 
+            <span>company merging the powers of two of the</span>
+            <span>most powerful technologies in our century.</span>
+        </p>
+    </div>
+<div class="containertex" id="next">
+</div>
+ <div class="containerma">
+        <div class="scroll-counter" id="scrollCounter">Scroll Count: 0</div> <!-- Scroll counter element -->
+        <video autoplay muted loop class="video-wrapper" id="scrollVideo">
+            <source src="your-video.mp4" type="video/mp4"> <!-- Replace with your video source -->
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Blank page to appear after the 10th scroll -->
+    <div class="next-page" id="nextPage">Next Page Content</div>
+
+    <!-- Blank page to appear after the 40th scroll -->
+    <div class="next-page" id="nextPage"></div>
+<script>
+
+  // Detect when the container comes into view or leaves the view
+window.addEventListener('scroll', function() {
+    const container = document.getElementById('containertext');
+    const text = document.getElementById('texted');
+    const nextContainer = document.getElementById('next');
+    
+    const containerPosition = container.getBoundingClientRect().top;
+    const containerBottom = container.getBoundingClientRect().bottom;
+    const screenHeight = window.innerHeight;
+    const nextContainerTop = nextContainer.getBoundingClientRect().top;
+
+    // If the container is in view
+    if (containerPosition < screenHeight && containerBottom > 0 && nextContainerTop > screenHeight * 0.6) {
+        text.classList.add('revealed');
+        text.classList.remove('hidden');
+    } 
+    // Start fading out the text when approaching the next container
+    else if (nextContainerTop <= screenHeight * 0.6) {
+        text.classList.remove('revealed');
+        text.classList.add('hidden');
+    }
+});
+
+const elts = {
+    text1: document.getElementById("text1"),
+    text2: document.getElementById("text2")
+};
+
+const texts = [
+    "Prayag ",
+    "പ്രയാഗ്",
+    "प्रयाग ",
+    "ಪ್ರಯಾಗ ",
+    "பிரயாக் "
+];
+
+const morphTime = 1;
+const cooldownTime = 0.25;
+
+let textIndex = texts.length - 1;
+let time = new Date();
+let morph = 0;
+let cooldown = cooldownTime;
+
+elts.text1.textContent = texts[textIndex % texts.length];
+elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+
+function doMorph() {
+    morph -= cooldown;
+    cooldown = 0;
+
+    let fraction = morph / morphTime;
+
+    if (fraction > 1) {
+        cooldown = cooldownTime;
+        fraction = 1;
+    }
+
+    setMorph(fraction);
+}
+
+function setMorph(fraction) {
+    elts.text2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+    elts.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+
+    fraction = 1 - fraction;
+    elts.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+    elts.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+
+    elts.text1.textContent = texts[textIndex % texts.length];
+    elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+}
+
+function doCooldown() {
+    morph = 0;
+
+    elts.text2.style.filter = "";
+    elts.text2.style.opacity = "100%";
+
+    elts.text1.style.filter = "";
+    elts.text1.style.opacity = "0%";
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    let newTime = new Date();
+    let shouldIncrementIndex = cooldown > 0;
+    let dt = (newTime - time) / 1000;
+    time = newTime;
+
+    cooldown -= dt;
+
+    if (cooldown <= 0) {
+        if (shouldIncrementIndex) {
+            textIndex++;
+        }
+
+        doMorph();
+    } else {
+        doCooldown();
+    }
+}
+
+animate();
+
+const video = document.getElementById('scrollVideo');
+        const scrollCounter = document.getElementById('scrollCounter');
+        const nextPage = document.getElementById('nextPage');
+
+        let scrollCount = 0; // Track the number of scrolls
+        let scrollLock = true; // Lock page scroll initially
+
+        // Detect when the video container comes into view
+        function checkVideoVisibility() {
+            const videoPosition = video.getBoundingClientRect();
+            const screenHeight = window.innerHeight;
+
+            // Check if the video container is in view
+            if (videoPosition.top < screenHeight && videoPosition.bottom > 0) {
+                // Allow scrolling and reset scroll count
+                scrollLock = false;
+            } else {
+                // Lock scroll when video container is not visible
+                scrollLock = true;
+            }
+        }
+
+        // Handle scroll event
+        function handleScroll(event) {
+            if (scrollLock) {
+                event.preventDefault(); // Prevent default scrolling behavior
+                return; // Exit if scroll is locked
+            }
+
+            const scrollDirection = event.deltaY > 0 ? 1 : -1;
+            scrollCount += scrollDirection;
+
+            // Prevent scroll count from going below 0
+            if (scrollCount < 0) {
+                scrollCount = 0;
+            }
+
+            // Update the scroll counter display
+            scrollCounter.innerText = `Scroll Count: ${scrollCount}`;
+
+            // Gradual rise between scrolls 1 to 5
+            if (scrollCount >= 1 && scrollCount <= 5) {
+                const risePercentage = (scrollCount / 5) * 100; // Calculate the rise percentage (0% to 100%)
+                const opacity = scrollCount / 5; // Increase opacity gradually
+                const bottomPosition = (-100 + risePercentage) + '%'; // Calculate bottom position (starts at -100%)
+                video.style.bottom = bottomPosition;
+                video.style.opacity = opacity;
+            } else if (scrollCount > 5) {
+                video.style.bottom = '0'; // Fully visible
+                video.style.opacity = 1; // Fully visible
+            } else {
+                video.style.bottom = '-100%'; // Reset position
+                video.style.opacity = 0; // Reset opacity
+            }
+
+            // After 10th scroll: move to the next blank page
+            if (scrollCount >= 10) {
+                nextPage.style.display = 'block'; // Show the next blank page
+                document.body.style.overflow = 'auto'; // Allow page scrolling
+
+                // Automatically scroll to the next page
+                window.scrollTo({
+                    top: window.innerHeight, // Scroll to the next section
+                    behavior: 'smooth' // Smooth scrolling effect
+                });
+
+                scrollLock = false; // Disable scroll lock
+            }
+        }
+
+        // Listen for scroll events
+        window.addEventListener('wheel', (event) => {
+            handleScroll(event);
+            checkVideoVisibility(); // Check video visibility after scrolling
+        });
+
+        // Check visibility on load and scroll
+        window.addEventListener('load', checkVideoVisibility);
+        window.addEventListener('scroll', checkVideoVisibility);
+</script>
+</body>
+</html>
